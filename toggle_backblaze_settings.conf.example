@@ -1,0 +1,20 @@
+# Backblaze Settings Toggle Configuration File
+# 
+# To use this configuration file:
+# 1. Copy this file to toggle_backblaze_settings.conf (without .example)
+# 2. Uncomment and fill in the paths below to match your system
+# 3. If you leave variables commented out, the script will attempt to find
+#    the files in the same directory as the script itself
+#
+# Note: DESTINATION is hardcoded in the script as /Library/Backblaze.bzpkg/bzdata/bzinfo.xml
+# and does not need to be configured here.
+
+# Path to the manual backup settings file (only when click backup now)
+# MANUAL_BACKUP="/path/to/MyOnlyWhenClickBzinfo.xml"
+
+# Path to the continuous backup settings file
+# CONTINUOUS_BACKUP="/path/to/myContinouslyBzinfo.xml"
+
+# Path to the log file where script actions are recorded
+# LOG_FILE="/path/to/backblaze_settings_toggle.log"
+

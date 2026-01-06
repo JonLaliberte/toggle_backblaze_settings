@@ -1,0 +1,12 @@
+# Configuration file - contains user-specific paths
+toggle_backblaze_settings.conf
+
+# Log file
+backblaze_settings_toggle.log
+
+# Backblaze Settings files
+MyOnlyWhenClickBzinfo.xml
+myContinouslyBzinfo.xml
+
+# macOS system files
+.DS_Store
