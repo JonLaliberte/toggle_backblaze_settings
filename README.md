@@ -111,7 +111,7 @@ sudo ./toggle_backblaze_settings.sh manual
 
 One of the key advantages of this script is that it can be automated using `crontab` or other scheduling tools, allowing you to automatically switch between backup modes on a schedule. This is particularly useful for work-from-home scenarios where you want to preserve bandwidth during work hours.
 
-### Example: Schedule Backups for Work Hours
+### Example: Schedule Backups to manual during work hours to save bandwidth for work
 
 Here's an example `crontab` configuration that switches Backblaze to manual mode at 8:00 AM and back to continuous mode at 10:00 PM, Monday through Friday:
 
@@ -239,7 +239,6 @@ chmod +x toggle_backblaze_settings.sh
 - The script modifies Backblaze's system configuration file, which requires appropriate permissions
 - Always verify your backup settings in Backblaze after using this script
 - The script preserves all other Backblaze settings; only the backup schedule type is changed
-- Settings files (`*.xml`) are automatically added to `.gitignore` to prevent committing user-specific configurations
 
 ## Credits
 
