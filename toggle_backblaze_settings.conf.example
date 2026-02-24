@@ -13,7 +13,7 @@
 # MANUAL_BACKUP="/path/to/MyOnlyWhenClickBzinfo.xml"
 
 # Path to the continuous backup settings file
-# CONTINUOUS_BACKUP="/path/to/myContinouslyBzinfo.xml"
+# CONTINUOUS_BACKUP="/path/to/MyContinuouslyBzinfo.xml"
 
 # Path to the log file where script actions are recorded
 # LOG_FILE="/path/to/backblaze_settings_toggle.log"

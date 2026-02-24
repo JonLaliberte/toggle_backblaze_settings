@@ -6,7 +6,7 @@ backblaze_settings_toggle.log
 
 # Backblaze Settings files
 MyOnlyWhenClickBzinfo.xml
-myContinouslyBzinfo.xml
+MyContinuouslyBzinfo.xml
 
 # macOS system files
 .DS_Store

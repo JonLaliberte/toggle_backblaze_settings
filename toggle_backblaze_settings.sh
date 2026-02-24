@@ -19,17 +19,65 @@ if [ -z "$MANUAL_BACKUP" ]; then
 fi
 
 if [ -z "$CONTINUOUS_BACKUP" ]; then
-    CONTINUOUS_BACKUP="$SCRIPT_DIR/myContinouslyBzinfo.xml"
+    CONTINUOUS_BACKUP="$SCRIPT_DIR/MyContinuouslyBzinfo.xml"
 fi
 
 if [ -z "$LOG_FILE" ]; then
     LOG_FILE="$SCRIPT_DIR/backblaze_settings_toggle.log"
 fi
 
+# Function to validate required paths from defaults/config
+validate_required_paths() {
+    local has_error=false
+    local var_name=""
+    local var_value=""
+    local parent_dir=""
+
+    for var_name in MANUAL_BACKUP CONTINUOUS_BACKUP LOG_FILE DESTINATION; do
+        var_value="${!var_name}"
+        if [ -z "$var_value" ]; then
+            echo "Error: Required path variable $var_name is empty." >&2
+            has_error=true
+        fi
+    done
+
+    if [ "$MANUAL_BACKUP" = "$CONTINUOUS_BACKUP" ]; then
+        echo "Error: MANUAL_BACKUP and CONTINUOUS_BACKUP cannot point to the same file." >&2
+        has_error=true
+    fi
+
+    for var_name in MANUAL_BACKUP CONTINUOUS_BACKUP LOG_FILE; do
+        var_value="${!var_name}"
+        parent_dir="$(dirname "$var_value")"
+        if [ ! -d "$parent_dir" ]; then
+            echo "Error: Parent directory does not exist for $var_name: $parent_dir" >&2
+            has_error=true
+        fi
+    done
+
+    if [ "$has_error" = true ]; then
+        echo "Fix the configuration in $CONFIG_FILE and try again." >&2
+        return 1
+    fi
+
+    return 0
+}
+
 # Source the setup file for first-run logic
 SETUP_FILE="$SCRIPT_DIR/setup_settings_files.sh"
-if [ -f "$SETUP_FILE" ]; then
-    source "$SETUP_FILE"
+if [ ! -r "$SETUP_FILE" ]; then
+    echo "Error: Required setup file is missing or unreadable: $SETUP_FILE" >&2
+    exit 1
+fi
+source "$SETUP_FILE"
+if ! declare -f check_and_create_settings_files >/dev/null 2>&1; then
+    echo "Error: check_and_create_settings_files function is not available from $SETUP_FILE" >&2
+    exit 1
+fi
+
+# Validate paths before any file operations
+if ! validate_required_paths; then
+    exit 1
 fi
 
 # Function to log the action
@@ -149,7 +197,9 @@ if [ "$1" = "-s" ] || [ "$1" = "--status" ]; then
 fi
 
 # Check if settings files exist, create them if needed
-check_and_create_settings_files
+if ! check_and_create_settings_files; then
+    exit 1
+fi
 
 if [ $# -eq 0 ]; then
     # No arguments: toggle between the two settings

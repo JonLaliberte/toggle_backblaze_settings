@@ -58,7 +58,7 @@ On first run, the script will automatically detect if the required settings file
 
 The script will then:
 - Copy your current Backblaze settings to `MyOnlyWhenClickBzinfo.xml`
-- Create `myContinouslyBzinfo.xml` with continuous backup settings
+- Create `MyContinuouslyBzinfo.xml` with continuous backup settings
 - You're ready to use the script!
 
 ## Usage
@@ -153,7 +153,7 @@ Edit the configuration file to specify custom paths:
 MANUAL_BACKUP="/path/to/MyOnlyWhenClickBzinfo.xml"
 
 # Path to the continuous backup settings file
-CONTINUOUS_BACKUP="/path/to/myContinouslyBzinfo.xml"
+CONTINUOUS_BACKUP="/path/to/MyContinuouslyBzinfo.xml"
 
 # Path to the log file
 LOG_FILE="/path/to/backblaze_settings_toggle.log"
@@ -161,7 +161,7 @@ LOG_FILE="/path/to/backblaze_settings_toggle.log"
 
 If you don't create a configuration file, the script will use default paths in the script's directory:
 - `MyOnlyWhenClickBzinfo.xml` - Manual backup settings
-- `myContinouslyBzinfo.xml` - Continuous backup settings
+- `MyContinuouslyBzinfo.xml` - Continuous backup settings
 - `backblaze_settings_toggle.log` - Activity log
 
 ### Default Backblaze Settings Location
@@ -177,7 +177,7 @@ This path is hardcoded and cannot be changed via configuration.
 
 1. The script maintains two XML configuration files:
    - `MyOnlyWhenClickBzinfo.xml` - Contains settings with `backup_schedule_type="only_when_click_backup_now"`
-   - `myContinouslyBzinfo.xml` - Contains settings with `backup_schedule_type="continuously"`
+   - `MyContinuouslyBzinfo.xml` - Contains settings with `backup_schedule_type="continuously"`
 
 2. When you run the script, it:
    - Checks the current backup mode by reading the Backblaze configuration file
@@ -192,7 +192,7 @@ All backup mode changes are logged to `backblaze_settings_toggle.log` (or your c
 
 ```
 [2024-01-15 14:30:22] SET: Copied MyOnlyWhenClickBzinfo.xml to bzinfo.xml
-[2024-01-15 15:45:10] SET: Copied myContinouslyBzinfo.xml to bzinfo.xml
+[2024-01-15 15:45:10] SET: Copied MyContinuouslyBzinfo.xml to bzinfo.xml
 ```
 
 ## Troubleshooting
@@ -208,7 +208,7 @@ sudo ./toggle_backblaze_settings.sh
 
 If the script can't find the settings files:
 1. Make sure you've completed the first-time setup process
-2. Check that `MyOnlyWhenClickBzinfo.xml` and `myContinouslyBzinfo.xml` exist in the script directory (or your configured location)
+2. Check that `MyOnlyWhenClickBzinfo.xml` and `MyContinuouslyBzinfo.xml` exist in the script directory (or your configured location)
 3. Re-run the setup by deleting the files and running the script again
 
 ### Cannot Determine Current Backup Status
@@ -231,7 +231,7 @@ chmod +x toggle_backblaze_settings.sh
 - `setup_settings_files.sh` - First-run setup logic
 - `toggle_backblaze_settings.conf.example` - Example configuration file
 - `MyOnlyWhenClickBzinfo.xml` - Manual backup settings (created during setup)
-- `myContinouslyBzinfo.xml` - Continuous backup settings (created during setup)
+- `MyContinuouslyBzinfo.xml` - Continuous backup settings (created during setup)
 - `backblaze_settings_toggle.log` - Activity log (created automatically)
 
 ## Notes
